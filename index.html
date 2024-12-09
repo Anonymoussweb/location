@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Share Your Location</h1>
+    <button onclick="getLocation()">Share Location</button>
+    <p id="location"></p>
+    <script>
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const lat = position.coords.latitude;
+              const lon = position.coords.longitude;
+              document.getElementById(
+                "location"
+              ).innerHTML = `Latitude: ${lat}, Longitude: ${lon}`;
+              // You can send these coordinates to your server
+            },
+            (error) => {
+              alert(
+                "Unable to fetch location. Please enable location services."
+              );
+            }
+          );
+        } else {
+          alert("Geolocation is not supported by this browser.");
+        }
+      }
+    </script>
+  </body>
+</html>
